@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\ArticlesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,8 @@ use App\Http\Controllers\PagesController;
 
 Route::get('/', [PagesController::class, 'index']);
 
+Route::resource('blog', ArticlesController::class);
+
 Auth::routes();
 
-Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'index'])->name('profile');

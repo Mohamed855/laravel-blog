@@ -3,12 +3,15 @@
 @section('content')
     <section class="hero-bg-image flex flex-col items-center justify-center">
         <h1 class="text-gray-200 text-5xl uppercase font-bold pb-10 text-center">Welocme To Our Blog</h1>
-        <a class="bg-gray-200 text-gray-700 py-4 px-5 rounded-lg font-bold uppercase text-xl" href="">Start Reading</a>
+        <a class="bg-gray-200 text-gray-900 hover:bg-gray-900 hover:text-gray-200 py-4 px-5 rounded-lg font-bold uppercase text-xl transition duration-300"
+            href="/blog">Start Reading</a>
     </section>
 
     <section class="container sm:grid grid-cols-2 gap-15 mx-auto py-15">
-        <div class="mx-2 md:mx-0">
-            <img class="sm:rounded-lg" src="https://picsum.photos/id/239/700/400" alt="">
+        <div class="px-4 md:px-0 flex">
+            <a href="">
+                <img class="object-cover sm:rounded-lg" src="https://picsum.photos/id/239/700/400" alt="">
+            </a>
         </div>
         <div class="flex flex-col items-left justify-center m-10 sm:m-0">
             <h2 class="font-bold text-gray-900 text-4xl uppercase">
@@ -25,13 +28,14 @@
                 Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
                 Aldus PageMaker including versions of Lorem Ipsum.
             </p>
-            <a class="bg-gray-700 text-gray-100 py-4 px-5 rounded-lg font-bold text-sm place-self-start " href="">
+            <a class="bg-gray-900 hover:bg-gray-700 text-gray-200 py-4 px-5 rounded-lg font-bold text-sm place-self-start transition duration-300"
+                href="">
                 Read more
             </a>
         </div>
     </section>
 
-    <section class="text-center p-15 bg-gray-900 text-gray-100">
+    <section class="text-center p-15 bg-gray-900 text-gray-200">
         <h2 class="text-2xl">Blog Categories</h2>
         <div class="container mx-auto pt-10 sm:grid grid-cols-4">
             <span class="font-bold text-2xl py-2 block">UX Design</span>
@@ -56,7 +60,7 @@
             </p>
         </div>
         <div class="sm:grid grid-cols-2 w-4/5 mx-auto">
-            <div class="md:flex bg-yellow-700 text-gray-100 pt-10">
+            <div class="md:flex bg-yellow-700 text-gray-200 pt-10">
                 <div class="block m-auto pt-4 pb-15 w-4/5">
                     <ul class="flex text-xs gap-2">
                         <li
@@ -84,7 +88,7 @@
                         with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
                         publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                     </h3>
-                    <a class="bg-transparent border-2 text-gray-100 py-4 px-5 rounded-lg font-bold text-sm inline-block hover:bg-yellow-100 hover:text-yellow-700 transition duration-100"
+                    <a class="bg-transparent border-2 text-gray-200 py-4 px-5 rounded-lg font-bold text-sm inline-block hover:bg-yellow-100 hover:text-yellow-700 transition duration-300"
                         href="">
                         Read more
                     </a>
