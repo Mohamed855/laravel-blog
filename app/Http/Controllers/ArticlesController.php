@@ -45,7 +45,7 @@ class ArticlesController extends Controller
 
         $slug = Str::slug($request->title, '-');
 
-        $imageName = uniqid() . '-' . $request->title . '.' . $request->image->extension();
+        $imageName = uniqid() . '-' . $slug . '.' . $request->image->extension();
         $request->image->move(public_path('images'), $imageName);
 
         Article::create([
@@ -65,9 +65,9 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        return view('blog.show') -> with('article', Article::where('slug', $slug)->first());
     }
 
     /**
@@ -76,9 +76,9 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        return view('blog.edit')-> with('article', Article::where('slug', $slug)->first());
     }
 
     /**
@@ -88,9 +88,31 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        //
+        $request -> validate([
+            'title' => 'required',
+            'description' => 'required',
+            'image' => 'required|mimes:jpg,png,jpeg|max:2048'
+        ]);
+
+        $updatedSlug = Str::slug($request->title, '-');
+
+        $imageName = uniqid() . '-' . $updatedSlug . '.' . $request->image->extension();
+        $request->image->move(public_path('images'), $imageName);
+
+        Article::where('slug', $slug)->update([
+            'slug' => $updatedSlug,
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'image_path' => $imageName,
+            'user_id' => auth() -> user() -> id,
+        ]);
+
+        return redirect('/blog/'.$updatedSlug) -> with([
+            'article' => Article::where('slug', $updatedSlug)->first(),
+            'message' => 'Article details has been updated'
+        ]);
     }
 
     /**
@@ -99,8 +121,9 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        Article::where('slug', $slug) -> delete();
+        return redirect('/blog') -> with('message', 'Article has been deleted');
     }
 }
